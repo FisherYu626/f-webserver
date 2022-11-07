@@ -1,0 +1,104 @@
+Date : 2022-10-12 21:47:42
+Directory : /home/node11/TinyWebServer
+Total : 64 files,  3214 codes, 322 comments, 517 blanks, all 4053 lines
+
+Languages
++---------------+------------+------------+------------+------------+------------+
+| language      | files      | code       | comment    | blank      | total      |
++---------------+------------+------------+------------+------------+------------+
+| C++           |         16 |      2,326 |        253 |        346 |      2,925 |
+| C             |          2 |        408 |         66 |         38 |        512 |
+| Markdown      |          9 |        261 |          0 |        100 |        361 |
+| HTML          |          9 |        175 |          2 |         18 |        195 |
+| Makefile      |          2 |         43 |          0 |         14 |         57 |
+| Shell Script  |          1 |          1 |          1 |          1 |          3 |
+| (Unsupported) |         25 |          0 |          0 |          0 |          0 |
++---------------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                  | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                     |         64 |      3,214 |        322 |        517 |      4,053 |
+| CGImysql                                                              |          3 |        168 |          9 |         45 |        222 |
+| http                                                                  |          3 |        755 |        116 |         84 |        955 |
+| lock                                                                  |          2 |        110 |          6 |         12 |        128 |
+| log                                                                   |          4 |        369 |         22 |         67 |        458 |
+| root                                                                  |         21 |        185 |          2 |         19 |        206 |
+| test_presure                                                          |         15 |        463 |         66 |         58 |        587 |
+| test_presure/webbench-1.5                                             |         14 |        440 |         66 |         47 |        553 |
+| test_presure/webbench-1.5/debian                                      |          5 |          0 |          0 |          0 |          0 |
+| threadpool                                                            |          2 |        153 |         22 |         22 |        197 |
+| timer                                                                 |          3 |        284 |         11 |         41 |        336 |
++-----------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------+---------------+------------+------------+------------+------------+
+| filename                                                              | language      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------+---------------+------------+------------+------------+------------+
+| /home/node11/TinyWebServer/2022_10_11_ServerLog                       | (Unsupported) |          0 |          0 |          0 |          0 |
+| /home/node11/TinyWebServer/CGImysql/README.md                         | Markdown      |         11 |          0 |          3 |         14 |
+| /home/node11/TinyWebServer/CGImysql/sql_connection_pool.cpp           | C++           |        110 |          8 |         29 |        147 |
+| /home/node11/TinyWebServer/CGImysql/sql_connection_pool.h             | C++           |         47 |          1 |         13 |         61 |
+| /home/node11/TinyWebServer/LICENSE                                    | (Unsupported) |          0 |          0 |          0 |          0 |
+| /home/node11/TinyWebServer/README.md                                  | Markdown      |        185 |          0 |         65 |        250 |
+| /home/node11/TinyWebServer/build.sh                                   | Shell Script  |          1 |          1 |          1 |          3 |
+| /home/node11/TinyWebServer/config.cpp                                 | C++           |         65 |         10 |         11 |         86 |
+| /home/node11/TinyWebServer/config.h                                   | C++           |         22 |         10 |         15 |         47 |
+| /home/node11/TinyWebServer/http/README.md                             | Markdown      |          6 |          0 |          1 |          7 |
+| /home/node11/TinyWebServer/http/http_conn.cpp                         | C++           |        608 |         85 |         68 |        761 |
+| /home/node11/TinyWebServer/http/http_conn.h                           | C++           |        141 |         31 |         15 |        187 |
+| /home/node11/TinyWebServer/lock/README.md                             | Markdown      |          6 |          0 |          6 |         12 |
+| /home/node11/TinyWebServer/lock/locker.h                              | C++           |        104 |          6 |          6 |        116 |
+| /home/node11/TinyWebServer/log/README.md                              | Markdown      |          8 |          0 |          2 |         10 |
+| /home/node11/TinyWebServer/log/block_queue.h                          | C++           |        171 |         13 |         29 |        213 |
+| /home/node11/TinyWebServer/log/log.cpp                                | C++           |        134 |          6 |         25 |        165 |
+| /home/node11/TinyWebServer/log/log.h                                  | C++           |         56 |          3 |         11 |         70 |
+| /home/node11/TinyWebServer/main.cpp                                   | C++           |         20 |          9 |         12 |         41 |
+| /home/node11/TinyWebServer/makefile                                   | Makefile      |         11 |          0 |          5 |         16 |
+| /home/node11/TinyWebServer/root/README.md                             | Markdown      |         10 |          0 |          1 |         11 |
+| /home/node11/TinyWebServer/root/fans.html                             | HTML          |         14 |          1 |          1 |         16 |
+| /home/node11/TinyWebServer/root/favicon.ico                           | (Unsupported) |          0 |          0 |          0 |          0 |
+| /home/node11/TinyWebServer/root/frame.jpg                             | (Unsupported) |          0 |          0 |          0 |          0 |
+| /home/node11/TinyWebServer/root/judge.html                            | HTML          |         22 |          0 |          5 |         27 |
+| /home/node11/TinyWebServer/root/log.html                              | HTML          |         20 |          0 |          2 |         22 |
+| /home/node11/TinyWebServer/root/logError.html                         | HTML          |         22 |          0 |          2 |         24 |
+| /home/node11/TinyWebServer/root/login.gif                             | (Unsupported) |          0 |          0 |          0 |          0 |
+| /home/node11/TinyWebServer/root/loginnew.gif                          | (Unsupported) |          0 |          0 |          0 |          0 |
+| /home/node11/TinyWebServer/root/picture.gif                           | (Unsupported) |          0 |          0 |          0 |          0 |
+| /home/node11/TinyWebServer/root/picture.html                          | HTML          |         14 |          1 |          1 |         16 |
+| /home/node11/TinyWebServer/root/register.gif                          | (Unsupported) |          0 |          0 |          0 |          0 |
+| /home/node11/TinyWebServer/root/register.html                         | HTML          |         20 |          0 |          1 |         21 |
+| /home/node11/TinyWebServer/root/registerError.html                    | HTML          |         21 |          0 |          2 |         23 |
+| /home/node11/TinyWebServer/root/registernew.gif                       | (Unsupported) |          0 |          0 |          0 |          0 |
+| /home/node11/TinyWebServer/root/test1.jpg                             | (Unsupported) |          0 |          0 |          0 |          0 |
+| /home/node11/TinyWebServer/root/video.gif                             | (Unsupported) |          0 |          0 |          0 |          0 |
+| /home/node11/TinyWebServer/root/video.html                            | HTML          |         16 |          0 |          2 |         18 |
+| /home/node11/TinyWebServer/root/welcome.html                          | HTML          |         26 |          0 |          2 |         28 |
+| /home/node11/TinyWebServer/root/xxx.jpg                               | (Unsupported) |          0 |          0 |          0 |          0 |
+| /home/node11/TinyWebServer/root/xxx.mp4                               | (Unsupported) |          0 |          0 |          0 |          0 |
+| /home/node11/TinyWebServer/server                                     | (Unsupported) |          0 |          0 |          0 |          0 |
+| /home/node11/TinyWebServer/test_presure/README.md                     | Markdown      |         23 |          0 |         11 |         34 |
+| /home/node11/TinyWebServer/test_presure/webbench-1.5/COPYRIGHT        | (Unsupported) |          0 |          0 |          0 |          0 |
+| /home/node11/TinyWebServer/test_presure/webbench-1.5/ChangeLog        | (Unsupported) |          0 |          0 |          0 |          0 |
+| /home/node11/TinyWebServer/test_presure/webbench-1.5/Makefile         | Makefile      |         32 |          0 |          9 |         41 |
+| /home/node11/TinyWebServer/test_presure/webbench-1.5/debian/changelog | (Unsupported) |          0 |          0 |          0 |          0 |
+| /home/node11/TinyWebServer/test_presure/webbench-1.5/debian/control   | (Unsupported) |          0 |          0 |          0 |          0 |
+| /home/node11/TinyWebServer/test_presure/webbench-1.5/debian/copyright | (Unsupported) |          0 |          0 |          0 |          0 |
+| /home/node11/TinyWebServer/test_presure/webbench-1.5/debian/dirs      | (Unsupported) |          0 |          0 |          0 |          0 |
+| /home/node11/TinyWebServer/test_presure/webbench-1.5/debian/rules     | (Unsupported) |          0 |          0 |          0 |          0 |
+| /home/node11/TinyWebServer/test_presure/webbench-1.5/socket.c         | C             |         38 |         13 |          8 |         59 |
+| /home/node11/TinyWebServer/test_presure/webbench-1.5/tags             | (Unsupported) |          0 |          0 |          0 |          0 |
+| /home/node11/TinyWebServer/test_presure/webbench-1.5/webbench         | (Unsupported) |          0 |          0 |          0 |          0 |
+| /home/node11/TinyWebServer/test_presure/webbench-1.5/webbench.1       | (Unsupported) |          0 |          0 |          0 |          0 |
+| /home/node11/TinyWebServer/test_presure/webbench-1.5/webbench.c       | C             |        370 |         53 |         30 |        453 |
+| /home/node11/TinyWebServer/test_presure/webbench-1.5/webbench.o       | (Unsupported) |          0 |          0 |          0 |          0 |
+| /home/node11/TinyWebServer/threadpool/README.md                       | Markdown      |          6 |          0 |          9 |         15 |
+| /home/node11/TinyWebServer/threadpool/threadpool.h                    | C++           |        147 |         22 |         13 |        182 |
+| /home/node11/TinyWebServer/timer/README.md                            | Markdown      |          6 |          0 |          2 |          8 |
+| /home/node11/TinyWebServer/timer/lst_timer.cpp                        | C++           |        203 |          6 |         16 |        225 |
+| /home/node11/TinyWebServer/timer/lst_timer.h                          | C++           |         75 |          5 |         23 |        103 |
+| /home/node11/TinyWebServer/webserver.cpp                              | C++           |        359 |         33 |         46 |        438 |
+| /home/node11/TinyWebServer/webserver.h                                | C++           |         64 |          5 |         14 |         83 |
+| Total                                                                 |               |      3,214 |        322 |        517 |      4,053 |
++-----------------------------------------------------------------------+---------------+------------+------------+------------+------------+

@@ -123,6 +123,7 @@ private:
     bool add_content_type();
     bool add_content_length(int content_length);
     bool add_linger();
+    bool add_content_range(int start,int end,int content_len);
     bool add_blank_line();
 
 public:
@@ -147,6 +148,11 @@ private:
     char m_write_buf[WRITE_BUFFER_SIZE];
     //指示buffer长度
     int m_write_idx;
+
+    // //断点重传响应报文存储的指针
+    // char m_write_bp_buf[WRITE_BUFFER_SIZE];
+    // //指示断点续传报文长度
+    // int m_write_bp_idx;
 
     //主状态机状态
     CHECK_STATE m_check_state;

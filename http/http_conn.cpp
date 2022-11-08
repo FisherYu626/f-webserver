@@ -5,6 +5,7 @@
 
 //定义http响应的一些状态信息
 const char *ok_200_title = "OK";
+const char *ok_206_title = "Partial Content";
 const char *error_400_title = "Bad Request";
 const char *error_400_form = "Your request has bad syntax or is inherently impossible to staisfy.\n";
 const char *error_403_title = "Forbidden";
@@ -355,6 +356,12 @@ http_conn::HTTP_CODE http_conn::parse_headers(char *text)
         text += strspn(text, " \t");
         m_host = text;
     }
+    else if(strncasecmp(text,"Range:",6) == 0){
+        text +=  6;
+        text += strspn(text," \t");
+        std::string str(text);
+
+    }
     else
     {
         LOG_INFO("oop!unknow header: %s", text);
@@ -665,7 +672,7 @@ bool http_conn::add_status_line(int status, const char *title)
 }
 bool http_conn::add_headers(int content_len)
 {   //content_len 记录响应报文长度 add_blank_line添加空行 
-    return add_content_length(content_len) && add_linger() &&
+    return add_content_length(content_len) && add_linger() && add_content_range(0,content_len,content_len)&&
            add_blank_line();
 }
 bool http_conn::add_content_length(int content_len)
@@ -680,6 +687,9 @@ bool http_conn::add_content_type()
 bool http_conn::add_linger()
 {
     return add_response("Connection:%s\r\n", (m_linger == true) ? "keep-alive" : "close");
+}
+bool http_conn::add_content_range(int start,int end,int content_len){
+    return add_response("Content-Range: bytes %d-%d/%d\r\n", start,end,content_len);
 }
 bool http_conn::add_blank_line()
 {
@@ -723,7 +733,7 @@ bool http_conn::process_write(HTTP_CODE ret)
     {
         add_status_line(200, ok_200_title);
         if (m_file_stat.st_size != 0)
-        {
+        {   
             add_headers(m_file_stat.st_size);
             //指向响应报文缓冲区
             m_iv[0].iov_base = m_write_buf;

@@ -6,6 +6,11 @@
         "istream": "cpp",
         "numeric": "cpp",
         "ostream": "cpp",
-        "sstream": "cpp"
+        "sstream": "cpp",
+        "exception": "cpp",
+        "memory_resource": "cpp",
+        "iosfwd": "cpp",
+        "new": "cpp",
+        "streambuf": "cpp"
     }
 }

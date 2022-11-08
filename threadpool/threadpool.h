@@ -80,6 +80,7 @@ bool threadpool<T>::append(T *request, int state)
         m_queuelocker.unlock();
         return false;
     }
+    //设置请求状态
     request->m_state = state;
     //请求队列中添加请求
     m_workqueue.push_back(request);
@@ -149,7 +150,7 @@ void threadpool<T>::run()
                     request->improv = 1;
                     //从连接池中取出一个数据库连接
                     connectionRAII mysqlcon(&request->mysql, m_connPool);
-                    //process(模板类中的方法,这里是http类)进行处理
+                    //process(模板类中的方法,这里是http类)进行处理 根据读出的数据处理请求
                     request->process();
                 }
                 else
@@ -158,14 +159,14 @@ void threadpool<T>::run()
                     request->timer_flag = 1;
                 }
             }
-            else
+            else //请求状态为写
             {
                 if (request->write())
-                {
+                {   //写成功
                     request->improv = 1;
                 }
                 else
-                {
+                {   //写失败
                     request->improv = 1;
                     request->timer_flag = 1;
                 }

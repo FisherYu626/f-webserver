@@ -9,7 +9,6 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/webserver",
-            // "args": ["-f", "${workspaceFolder}/etc/observer.ini"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],

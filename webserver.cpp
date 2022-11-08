@@ -360,15 +360,15 @@ void WebServer::dealwithwrite(int sockfd)
         m_pool->append(users + sockfd, 1);
 
         while (true)
-        {   //死循环直到1 == users[sockfd].improv
+        {   //死循环直到1 == users[sockfd].improv 未写完一直死循环
             if (1 == users[sockfd].improv)
-            {
-                if (1 == users[sockfd].timer_flag)
-                {   //关闭连接 移除定时器
+            {   
+                if (1 == users[sockfd].timer_flag) 
+                {   //关闭连接 移除定时器 写失败
                     deal_timer(timer, sockfd);
                     users[sockfd].timer_flag = 0;
                 }
-                users[sockfd].improv = 0;
+                users[sockfd].improv = 0; //写成功 
                 break;
             }
         }

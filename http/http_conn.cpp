@@ -360,6 +360,24 @@ http_conn::HTTP_CODE http_conn::parse_headers(char *text)
         text +=  6;
         text += strspn(text," \t");
         std::string str(text);
+        std::string start,end;
+        for(int i = 0;i<str.size();){
+            while(str[i]>'9') i++;
+            while(str[i]!= '-') start += str[i++];
+            if(str[i] == '-') i++;
+            if(i>=str.size()) break;
+            while(str[i]!= '-') end += str[i++];
+        }
+        
+        m_content_s = atoi(start.data());
+
+        if(end.empty()) m_content_e = m_content_s+QUERY_RANGE_MAX-1;
+        else {
+            m_content_e = atoi(end.data());
+            if(m_content_e-m_content_s+1>QUERY_RANGE_MAX) 
+                m_content_e = m_content_s+QUERY_RANGE_MAX-1;
+        }
+
 
     }
     else
@@ -675,6 +693,12 @@ bool http_conn::add_headers(int content_len)
     return add_content_length(content_len) && add_linger() && add_content_range(0,content_len,content_len)&&
            add_blank_line();
 }
+bool http_conn::add_bp_headers(int file_len,int m_content_s,int m_content_e)
+{   //content_len 记录响应报文长度 add_blank_line添加空行 
+    int len = m_content_e-m_content_s+1;
+    return add_content_length(len) && add_linger() && add_content_range(m_content_s,m_content_e,file_len)&&
+           add_blank_line();
+}
 bool http_conn::add_content_length(int content_len)
 {
     return add_response("Content-Length:%d\r\n", content_len);
@@ -730,29 +754,60 @@ bool http_conn::process_write(HTTP_CODE ret)
         break;
     }
     case FILE_REQUEST:
-    {
-        add_status_line(200, ok_200_title);
-        if (m_file_stat.st_size != 0)
-        {   
-            add_headers(m_file_stat.st_size);
-            //指向响应报文缓冲区
-            m_iv[0].iov_base = m_write_buf;
-            m_iv[0].iov_len = m_write_idx;
-            //指向mmap返回的文件地址，长度指向文件大小
-            m_iv[1].iov_base = m_file_address;
-            m_iv[1].iov_len = m_file_stat.st_size;
-            m_iv_count = 2;
-            //发送的全部长度为 响应报文头部信息+文件大小
-            bytes_to_send = m_write_idx + m_file_stat.st_size;
-            return true;
-        }
-        else
-        {   
-            //如果请求资源大小为0 返回空白html文件
-            const char *ok_string = "<html><body></body></html>";
-            add_headers(strlen(ok_string));
-            if (!add_content(ok_string))
-                return false;
+    {   
+        if(m_file_stat.st_size<QUERY_RANGE_MAX){
+            add_status_line(200, ok_200_title);
+            if (m_file_stat.st_size != 0)
+            {   
+                add_headers(m_file_stat.st_size);
+                //指向响应报文缓冲区
+                m_iv[0].iov_base = m_write_buf;
+                m_iv[0].iov_len = m_write_idx;
+                //指向mmap返回的文件地址，长度指向文件大小
+                m_iv[1].iov_base = m_file_address;
+                m_iv[1].iov_len = m_file_stat.st_size;
+                m_iv_count = 2;
+                //发送的全部长度为 响应报文头部信息+文件大小
+                bytes_to_send = m_write_idx + m_file_stat.st_size;
+                return true;
+            }
+            else
+            { 
+                //如果请求资源大小为0 返回空白html文件
+                const char *ok_string = "<html><body></body></html>";
+                add_headers(strlen(ok_string));
+                if (!add_content(ok_string))
+                    return false;
+            }
+        }else{
+            add_status_line(206, ok_206_title);
+            if (m_file_stat.st_size != 0)
+            {   
+                if(m_content_e>m_file_stat.st_size) m_content_e = m_file_stat.st_size-1;
+                int send_content_len = m_content_e-m_content_s+1;
+
+                add_bp_headers(m_file_stat.st_size , m_content_s , m_content_e);
+
+                printf("%d %d\n",m_content_s,m_content_e);
+                //指向响应报文缓冲区
+                m_iv[0].iov_base = m_write_buf;
+                m_iv[0].iov_len = m_write_idx;
+                //指向mmap返回的文件地址，长度指向文件大小
+                m_iv[1].iov_base = m_file_address+m_content_s;
+                m_iv[1].iov_len = send_content_len;
+                m_iv_count = 2;
+                //发送的全部长度为 响应报文头部信息+文件大小
+                bytes_to_send = m_write_idx + send_content_len;
+                return true;
+            }
+            else
+            {
+                //如果请求资源大小为0 返回空白html文件
+                const char *ok_string = "<html><body></body></html>";
+                add_headers(strlen(ok_string));
+                if (!add_content(ok_string))
+                    return false;
+            }
         }
     }
     default:

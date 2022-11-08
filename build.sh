@@ -1,3 +1,4 @@
 #!/bin/bash
+make clean
 
-make server
+make server -j8

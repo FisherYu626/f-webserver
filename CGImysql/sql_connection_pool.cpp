@@ -42,8 +42,8 @@ void connection_pool::init(string url, string User, string PassWord, string DBNa
 			LOG_ERROR("MySQL Error");
 			exit(1);
 		}
-		printf("now the sql port is %d\n",Port);
-		printf("url is %s\n",url.c_str());
+		// printf("now the sql port is %d\n",Port);
+		// printf("url is %s\n",url.c_str());
 		con = mysql_real_connect(con, url.c_str(), User.c_str(), PassWord.c_str(), DBName.c_str(), (unsigned int)33007, NULL, 0);
 		// printf("condb %s\n",con->db);
 		// printf("con port %s\n",con->fields);

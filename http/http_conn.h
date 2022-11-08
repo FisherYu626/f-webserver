@@ -34,6 +34,8 @@ public:
     static const int READ_BUFFER_SIZE = 2048;
     //写缓冲
     static const int WRITE_BUFFER_SIZE = 1024;
+    //请求数据的最大长度
+    static const int QUERY_RANGE_MAX = 10485760;
     //报文请求方法
     enum METHOD
     {
@@ -120,6 +122,7 @@ private:
     bool add_content(const char *content);
     bool add_status_line(int status, const char *title);
     bool add_headers(int content_length);
+    bool add_bp_headers(int file_len,int m_content_s,int m_content_e);
     bool add_content_type();
     bool add_content_length(int content_length);
     bool add_linger();
@@ -165,6 +168,10 @@ private:
     char *m_version;
     char *m_host;
     int m_content_length;
+    //指示请求范围start
+    int m_content_s;
+    //指示请求范围end
+    int m_content_e;
     bool m_linger;
     //服务器上的文件地址 文件内存映射
     char *m_file_address;
